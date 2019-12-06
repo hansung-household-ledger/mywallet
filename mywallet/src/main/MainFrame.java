@@ -7,15 +7,15 @@ import javax.swing.JFrame;
 public class MainFrame extends JFrame{
 
     public MainFrame() {
-        setTitle("팀 프로젝트(가계부)");
+        setTitle("mywallet project");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(2000, 2000);
         setVisible(true);
         Container c = getContentPane();
 
-        // 배치 관리자
+        // batch 
         c.setLayout(new BorderLayout());
-        // panel 추가 부분 (예시)
+        // add panel example
 //        add(menuPanel, BorderLayout.NORTH);
 
     }
