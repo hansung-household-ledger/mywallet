@@ -197,17 +197,12 @@ public class GraphPanel extends JPanel{
 							 g.fillRect(110+(100*i), 250-income[i]*2, 10, income[i]*2);
 					 }
 			 	}
-//			 
-//			 for(int i=0; i<outcome.length; i++) {
-//				 if(outcome[i] > 0)
-//					 g.fillRect(110+(100*i), 250-outcome[i]*2, 10, outcome[i]*2);
-//			 }
 		 }
 		 
 		 public DrawingPanel (int[] outcome, int[] income) {
 			 this.outcome = outcome;
 			 this.income = income;
 		 }
-		 
 	}
+	
 }
