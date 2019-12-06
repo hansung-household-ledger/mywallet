@@ -4,6 +4,8 @@ import java.awt.*;
 
 import javax.swing.JFrame;
 
+import myGraph.GraphPanel;
+
 public class MainFrame extends JFrame{
 
     public MainFrame() {
@@ -17,6 +19,8 @@ public class MainFrame extends JFrame{
         c.setLayout(new BorderLayout());
         // add panel example
 //        add(menuPanel, BorderLayout.NORTH);
+        GraphPanel graphPanel = new GraphPanel();
+        add(graphPanel);
 
     }
     
