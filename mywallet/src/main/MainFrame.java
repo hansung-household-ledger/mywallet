@@ -18,6 +18,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import RightFrame.MyRightPanel;
 
+import myGraph.GraphPanel;
+
 public class MainFrame extends JFrame{
 	public static String detail1[] = {"월급","용돈","보너스","수당"};
 	public static String detail2[] = {"교통비", "식비", "문화생활", "쇼핑", "커피", "의류", "경조사", "자기계발", "운동", "데이트"};
@@ -32,11 +34,17 @@ public class MainFrame extends JFrame{
         c.setLayout(new GridLayout(1,2));
         // add panel example
 //        add(menuPanel, BorderLayout.NORTH);
+<<<<<<< HEAD
         MyRightPanel RP = new MyRightPanel();
         RP.setSize(500, 1000);
         RP.setLocation(500,0);
         RP.setBackground(new Color(120,255,0));
         add(RP);
+=======
+        GraphPanel graphPanel = new GraphPanel();
+        add(graphPanel);
+
+>>>>>>> e4ebc70c266c502484510f614e1c774791b9e61a
     }
 	public static void main(String[] args) {
 		new MainFrame();
