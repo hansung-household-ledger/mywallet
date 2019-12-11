@@ -8,8 +8,13 @@ import RightFrame.MyRightPanel;
 import myGraph.GraphPanel;
 
 public class MainFrame extends JFrame{
-	public static String detail1[] = {"����","�뵷","���ʽ�","����"};
-	public static String detail2[] = {"�����", "�ĺ�", "��ȭ��Ȱ", "����", "Ŀ��", "�Ƿ�", "������", "�ڱ���", "�", "����Ʈ"};
+
+	
+	GraphPanel graphPanel = null;
+	MyRightPanel RP = null;
+	TopPanel1 tp = new TopPanel1();
+	public static String detail1[] = {"월급","용돈","보너스","수당"};
+	public static String detail2[] = {"교통비", "식비", "문화생활", "쇼핑", "커피", "의류", "경조사", "자기계발", "운동", "데이트"};
 
     public MainFrame() {
         setTitle("mywallet project");
@@ -17,26 +22,44 @@ public class MainFrame extends JFrame{
         setSize(1000, 1000);
         setVisible(true);
         Container c = getContentPane();
-
+        graphPanel = new GraphPanel(this);
+        RP = new MyRightPanel(this);
         // batch 
         c.setLayout(new GridLayout(1,2));
         // add panel example
 //        add(menuPanel, BorderLayout.NORTH);
 
-        c.add(new TopPanel1());
+        c.add(tp);
 
-        MyRightPanel RP = new MyRightPanel();
+        
         RP.setSize(500, 1000);
         RP.setLocation(500,0);
-        RP.setBackground(new Color(120,255,0));
+//        RP.setBackground(new Color(120,255,0));
         add(RP);
 
-        GraphPanel graphPanel = new GraphPanel();
-        add(graphPanel);
+        
+//        add(graphPanel);
+        
 
     }
+    
+    public void change(String panelName) {
+    	if(panelName.equals("graphPanel")) {
+    		getContentPane().removeAll();
+    		getContentPane().add(graphPanel);
+    		revalidate();
+    		repaint();
+    	} else {
+    		getContentPane().removeAll();
+    		getContentPane().add(tp);
+    		getContentPane().add(RP);
+    		revalidate();
+    		repaint();
+    	}
+    }
+    
 	public static void main(String[] args) {
-		new MainFrame();
+		MainFrame mf = new MainFrame();
 
 	}
 }

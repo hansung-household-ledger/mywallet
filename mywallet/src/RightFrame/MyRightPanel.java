@@ -1,7 +1,9 @@
 package RightFrame;
 
 import java.awt.Color;
+import java.awt.Container;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
@@ -10,35 +12,39 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import main.MainFrame;
 import main.MyActionListener;
+import myGraph.GraphPanel;
 
 public class MyRightPanel extends JPanel {
     	String a;
     	private JLabel label[] = new JLabel[3];
     	private JTextField tf = new JTextField();
-    	//private String detail1[] = {"¿ù±Ş","¿ëµ·","º¸³Ê½º","¼ö´ç"};
-    	//private String detail2[] = {"±³Åëºñ", "½Äºñ", "¹®È­»ıÈ°", "¼îÇÎ", "Ä¿ÇÇ", "ÀÇ·ù", "°æÁ¶»ç", "ÀÚ±â°è¹ß", "¿îµ¿", "µ¥ÀÌÆ®"};
+    	//private String detail1[] = {"ï¿½ï¿½ï¿½ï¿½","ï¿½ëµ·","ï¿½ï¿½ï¿½Ê½ï¿½","ï¿½ï¿½ï¿½ï¿½"};
+    	//private String detail2[] = {"ï¿½ï¿½ï¿½ï¿½ï¿½", "ï¿½Äºï¿½", "ï¿½ï¿½È­ï¿½ï¿½È°", "ï¿½ï¿½ï¿½ï¿½", "Ä¿ï¿½ï¿½", "ï¿½Ç·ï¿½", "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", "ï¿½Ú±ï¿½ï¿½ï¿½", "ï¿½îµ¿", "ï¿½ï¿½ï¿½ï¿½Æ®"};
     	
     	public static JComboBox<String> combo = new JComboBox(main.MainFrame.detail1);
     	
-    	private JButton in = new JButton("¼öÀÔ");
-    	private JButton out = new JButton("ÁöÃâ");
-    	private JButton ok = new JButton("È®ÀÎ");
-    	private JButton check = new JButton("Åë°è È®ÀÎÇÏ±â");
-    	public MyRightPanel() {
+    	private JButton in = new JButton("ìˆ˜ì…");
+    	private JButton out = new JButton("ì§€ì¶œ");
+    	private JButton ok = new JButton("í™•ì¸");
+    	private JButton check = new JButton("í†µê³„í™•ì¸");
+    	
+
+    	public MyRightPanel(MainFrame mainframe) {
 			setLayout(null);
 				in.setSize(100, 30);
 				in.setLocation(40+120,60);
 				in.setBackground(Color.MAGENTA);
 				in.setForeground(Color.BLACK);
-				in.setFont(new Font("¸¼Àº°íµñ", Font.ITALIC, 25));
+				in.setFont(new Font("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", Font.ITALIC, 25));
 				add(in);
 				//in.addActionListener(new MyActionListener());
 				out.setSize(100, 30);
 				out.setLocation(40+220,60);
 				out.setBackground(Color.BLUE);
 				out.setForeground(Color.BLACK);
-				out.setFont(new Font("¸¼Àº°íµñ", Font.ITALIC, 25));
+				out.setFont(new Font("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", Font.ITALIC, 25));
 				add(out);
 				//out.addActionListener(new MyActionListener());
 				label[0] = new JLabel("+0");
@@ -46,24 +52,24 @@ public class MyRightPanel extends JPanel {
 				label[0].setLocation(40+210,120);
 				label[0].setBackground(Color.MAGENTA);
 				label[0].setForeground(Color.BLACK);
-				label[0].setFont(new Font("¸¼Àº°íµñ", Font.ITALIC, 25));
+				label[0].setFont(new Font("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", Font.ITALIC, 25));
 				add(label[0]);
-				label[1] = new JLabel("±İ¾× ÀÔ·Â : ");
+				label[1] = new JLabel("ê¸ˆì•¡ì…ë ¥ : ");
 				label[1].setSize(130, 30);
 				label[1].setLocation(40+80,180);
 				label[1].setBackground(Color.MAGENTA);
 				label[1].setForeground(Color.BLACK);
-				label[1].setFont(new Font("¸¼Àº°íµñ", Font.ITALIC, 25));
+				label[1].setFont(new Font("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", Font.ITALIC, 25));
 				add(label[1]);
 				tf.setSize(200,30);
 				tf.setLocation(270, 180);
 				add(tf);
-				label[2] = new JLabel(" Ä«Å×°í¸® : ");
+				label[2] = new JLabel(" ì¹´í…Œê³ ë¦¬ : ");
 				label[2].setSize(130, 30);
 				label[2].setLocation(40+80,240);
 				label[2].setBackground(Color.MAGENTA);
 				label[2].setForeground(Color.BLACK);
-				label[2].setFont(new Font("¸¼Àº°íµñ", Font.ITALIC, 25));
+				label[2].setFont(new Font("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", Font.ITALIC, 25));
 				add(label[2]);
 				combo.setSize(200, 30);
 				combo.setLocation(270, 240);
@@ -75,5 +81,12 @@ public class MyRightPanel extends JPanel {
 				check.setSize(200, 30);
 				check.setLocation(180, 800);
 				add(check);
+				
+				check.addActionListener(new ActionListener(){
+					@Override
+					public void actionPerformed(ActionEvent e) {	
+						mainframe.change("graphPanel");
+					}     
+		        });
 		}
     }

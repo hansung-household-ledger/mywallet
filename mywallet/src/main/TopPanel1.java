@@ -4,14 +4,14 @@ import java.awt.*;
 import javax.swing.*;
 
 class TopPanel1 extends JPanel {
-	JLabel percent = new JLabel("5%");
-	JLabel balance = new JLabel("$950,000 ³²À½");
-	JLabel perDay = new JLabel("$33,333 3ÀÏ");
-	JLabel date = new JLabel("2019³â 12¿ù 2ÀÏ ¿ù¿äÀÏ");
-	JLabel onToday = new JLabel("¿À´Ã ÇöÀç±îÁö $50,000");
-	JLabel yester = new JLabel("¾îÁ¦ $0");
-	JLabel currentMonth = new JLabel("ÀÌ¹ø ´Ş ÇöÀç±îÁö $50,000");
-	JLabel lastMonth = new JLabel("Áö³­ ´Ş $0");
+	private JLabel percent = new JLabel("5%");
+	private JLabel balance = new JLabel("$950,000 ë‚¨ìŒ");
+	private JLabel perDay = new JLabel("$33,333");
+	private JLabel date = new JLabel("2019ë…„ 12ì›” 2ì¼ ì›”ìš”ì¼");
+	private JLabel onToday = new JLabel("í˜„ì¬ê¹Œì§€ $50,000");
+	private JLabel yester = new JLabel("ì–´ì œ $0");
+	private JLabel currentMonth = new JLabel("ì´ë²ˆë‹¬ í˜„ì¬ê¹Œì§€ $50,000");
+	private JLabel lastMonth = new JLabel("ì§€ë‚œë‹¬ $0");
 
 	public TopPanel1() {
 		setLayout(null);
@@ -22,7 +22,7 @@ class TopPanel1 extends JPanel {
 		percent.setOpaque(true);
 		percent.setBackground(Color.BLUE);
 		percent.setForeground(Color.WHITE);
-		percent.setFont(new Font("°íµñ",Font.BOLD,50));
+		percent.setFont(new Font("ï¿½ï¿½ï¿½",Font.BOLD,50));
 		add(percent);
 	
 		balance.setSize(1000,100);
@@ -30,7 +30,7 @@ class TopPanel1 extends JPanel {
 		balance.setOpaque(true);
 		balance.setBackground(Color.BLUE);
 		balance.setForeground(Color.WHITE);
-		balance.setFont(new Font("°íµñ",Font.BOLD,20));
+		balance.setFont(new Font("ï¿½ï¿½ï¿½",Font.BOLD,20));
 		add(balance);
 	
 		perDay.setSize(1000, 100);
@@ -38,7 +38,7 @@ class TopPanel1 extends JPanel {
 		perDay.setOpaque(true);
 		perDay.setBackground(Color.BLUE);
 		perDay.setForeground(Color.WHITE);
-		perDay.setFont(new Font("°íµñ",Font.BOLD,20));
+		perDay.setFont(new Font("ï¿½ï¿½ï¿½",Font.BOLD,20));
 		add(perDay);
 
 		date.setSize(1000, 50);
@@ -46,7 +46,7 @@ class TopPanel1 extends JPanel {
 		date.setOpaque(true);
 		date.setBackground(Color.GRAY);
 		date.setForeground(Color.BLACK);
-		date.setFont(new Font("°íµñ",Font.BOLD,40));
+		date.setFont(new Font("ï¿½ï¿½ï¿½",Font.BOLD,40));
 		add(date);
 	
 		onToday.setSize(1000, 100);
@@ -54,7 +54,7 @@ class TopPanel1 extends JPanel {
 		onToday.setOpaque(true);
 		onToday.setBackground(Color.BLUE);
 		onToday.setForeground(Color.WHITE);
-		onToday.setFont(new Font("°íµñ",Font.BOLD,40));
+		onToday.setFont(new Font("ï¿½ï¿½ï¿½",Font.BOLD,40));
 		add(onToday);
 		
 		yester.setSize(1000, 80);
@@ -62,7 +62,7 @@ class TopPanel1 extends JPanel {
 		yester.setOpaque(true);
 		yester.setBackground(Color.BLUE);
 		yester.setForeground(Color.WHITE);
-		yester.setFont(new Font("°íµñ",Font.BOLD,40));
+		yester.setFont(new Font("ï¿½ï¿½ï¿½",Font.BOLD,40));
 		add(yester);
 		
 		currentMonth.setSize(1000, 80);
@@ -70,7 +70,7 @@ class TopPanel1 extends JPanel {
 		currentMonth.setOpaque(true);
 		currentMonth.setBackground(Color.BLUE);
 		currentMonth.setForeground(Color.WHITE);
-		currentMonth.setFont(new Font("°íµñ",Font.BOLD,40));
+		currentMonth.setFont(new Font("ï¿½ï¿½ï¿½",Font.BOLD,40));
 		add(currentMonth);
 		
 		lastMonth.setSize(1000, 80);
@@ -78,7 +78,7 @@ class TopPanel1 extends JPanel {
 		lastMonth.setOpaque(true);
 		lastMonth.setBackground(Color.BLUE);
 		lastMonth.setForeground(Color.WHITE);
-		lastMonth.setFont(new Font("°íµñ",Font.BOLD,40));
+		lastMonth.setFont(new Font("ï¿½ï¿½ï¿½",Font.BOLD,40));
 		add(lastMonth);
 	}
 }
