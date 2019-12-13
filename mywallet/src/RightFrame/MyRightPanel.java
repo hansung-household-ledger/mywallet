@@ -1,6 +1,7 @@
 package RightFrame;
 
 import java.awt.Color;
+import java.awt.Container;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,29 +13,29 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import main.MainFrame;
+import myGraph.GraphPanel;
+
 
 public class MyRightPanel extends JPanel {
     	String a;
     	private JLabel label[] = new JLabel[3];
     	private JTextField tf = new JTextField();
-    	//private String detail1[] = {"����","�뵷","���ʽ�","����"};
-    	//private String detail2[] = {"�����", "�ĺ�", "��ȭ��Ȱ", "����", "Ŀ��", "�Ƿ�", "������", "�ڱ���", "�", "����Ʈ"};
-    	private String value = tf.getText();
     	public static JComboBox<String> combo = new JComboBox(MainFrame.detail1);
     	
     	private JButton in = new JButton("수입");
     	private JButton out = new JButton("지출");
     	private JButton ok = new JButton("확인");
     	private JButton check = new JButton("통계 확인하기");
-    	
-    	private String stringnow = Integer.toString(main.MainFrame.now);
-    	public MyRightPanel() {
+    
+
+    	public MyRightPanel(MainFrame mainframe) {
 			setLayout(null);
 				in.setSize(100, 30);
 				in.setLocation(40+120,60);
 				in.setBackground(Color.MAGENTA);
 				in.setForeground(Color.BLACK);
 				in.setFont(new Font("맑은고딕", Font.ITALIC, 25));
+
 				add(in);
 				out.setSize(100, 30);
 				out.setLocation(40+220,60);
@@ -49,7 +50,8 @@ public class MyRightPanel extends JPanel {
 				label[0].setForeground(Color.BLACK);
 				label[0].setFont(new Font("맑은고딕", Font.ITALIC, 25));
 				add(label[0]);
-				label[1] = new JLabel("금액 입력 : ");
+
+				label[1] = new JLabel("금액입력 : ");
 				label[1].setSize(130, 30);
 				label[1].setLocation(40+80,180);
 				label[1].setBackground(Color.MAGENTA);
@@ -102,12 +104,15 @@ public class MyRightPanel extends JPanel {
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						label[0].setText(tf.getText());
-						if(out.isSelected())
-						MainFrame.incoming.add(tf.getText());
-						else
-							MainFrame.outgoing.add(tf.getText());
-						}
-					  
+						// db
+					}
+				});
+
+				check.addActionListener(new ActionListener(){
+					@Override
+					public void actionPerformed(ActionEvent e) {	
+						mainframe.change("graphPanel");
+					}     
 		        });
-		}
+    	}
     }

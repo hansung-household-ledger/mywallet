@@ -7,6 +7,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
+import main.MainFrame;
+
 public class GraphPanel extends JPanel{
 	
 	
@@ -32,7 +34,7 @@ public class GraphPanel extends JPanel{
 	ChartPanel chartPanel = new ChartPanel(); // 원 차트패널
 	DrawingPanel drawingPanel = new DrawingPanel(outcome, income);
 		
-	public GraphPanel () {
+	public GraphPanel (MainFrame mainframe) {
         setLayout(null);
         
         backButton.setSize(80,30);
@@ -99,6 +101,13 @@ public class GraphPanel extends JPanel{
 				radiobutton1.setSelected(false);
 				drawingPanel.repaint(); // 차트패널의 PAINT호출
 				
+			}     
+        });
+        
+        backButton.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {	
+				mainframe.change("");
 			}     
         });
         
@@ -203,6 +212,8 @@ public class GraphPanel extends JPanel{
 			 this.outcome = outcome;
 			 this.income = income;
 		 }
+		 
 	}
+	
 	
 }
