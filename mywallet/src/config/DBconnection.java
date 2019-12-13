@@ -13,7 +13,7 @@ public class DBconnection {
 	ResultSet resultSet;
 	
 	String driverName = "com.mysql.jdbc.Driver";
-	String url = "jdbc:mysql://database-1.ceor5h1wx6xh.ap-northeast-2.rds.amazonaws.com:3306/sopt?useSSL=false";
+	String url = "jdbc:mysql://database-1.ceor5h1wx6xh.ap-northeast-2.rds.amazonaws.com:3306/mywallet?useSSL=false";
 	String user = "root";
 	String password = "data1234";
 	

@@ -1,11 +1,12 @@
 package RightFrame;
 
 import java.awt.Color;
-import java.awt.Container;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -13,36 +14,40 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import main.MainFrame;
-import myGraph.GraphPanel;
 
 
 public class MyRightPanel extends JPanel {
+		Image image;
     	String a;
     	private JLabel label[] = new JLabel[3];
     	private JTextField tf = new JTextField();
     	public static JComboBox<String> combo = new JComboBox(MainFrame.detail1);
     	
-    	private JButton in = new JButton("수입");
-    	private JButton out = new JButton("지출");
+    	private JButton in = new JButton(new ImageIcon("./image/income.png"));
+    	private JButton out = new JButton(new ImageIcon("./image/out.png"));
     	private JButton ok = new JButton("확인");
     	private JButton check = new JButton("통계 확인하기");
     
 
     	public MyRightPanel(MainFrame mainframe) {
 			setLayout(null);
-				in.setSize(100, 30);
-				in.setLocation(40+120,60);
-				in.setBackground(Color.MAGENTA);
-				in.setForeground(Color.BLACK);
-				in.setFont(new Font("맑은고딕", Font.ITALIC, 25));
-
+				in.setSize(100,65);
+				in.setLocation(40+120,30);
+				in.setBorderPainted(false);
+				in.setContentAreaFilled(false);
+				in.setFocusPainted(false);
 				add(in);
-				out.setSize(100, 30);
-				out.setLocation(40+220,60);
-				out.setBackground(Color.BLUE);
-				out.setForeground(Color.BLACK);
-				out.setFont(new Font("맑은고딕", Font.ITALIC, 25));
+				//in.setBackground(Color.MAGENTA);
+				//in.setForeground(Color.BLACK);
+				//in.setFont(new Font("맑은고딕", Font.ITALIC, 25));
+
+				out.setSize(100,65);
+				out.setLocation(40+240,30);
+				out.setBorderPainted(false);
+				out.setContentAreaFilled(false);
+				out.setFocusPainted(false);
 				add(out);
+				
 				label[0] = new JLabel("0");
 				label[0].setSize(200, 30);
 				label[0].setLocation(40+210,120);
