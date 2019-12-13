@@ -1,11 +1,14 @@
 package main;
 
 import javax.swing.*;
+
+import model.UserData;
+
 import java.awt.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-class TopPanel1 extends JPanel {
+public class TopPanel1 extends JPanel {
    //날짜
    SimpleDateFormat format1 = new SimpleDateFormat("yyyy년 MM월 dd일");
    Date time = new Date();
@@ -16,14 +19,15 @@ class TopPanel1 extends JPanel {
    private JLabel balance = new JLabel("$950,000 남음");
    private JLabel perDay = new JLabel("$33,333");
    private JLabel date = new JLabel(time1);
-   private JLabel onToday = new JLabel("현재까지 $50,000");
-   private JLabel yester = new JLabel("어제 $0");
-   private JLabel currentMonth = new JLabel("이번달 현재까지 $50,000");
+   private JLabel onToday = new JLabel("잔액 $50,000");
+   private JLabel yester = new JLabel("지출 누적 금액 $0");
+   private JLabel currentMonth = new JLabel("수입 누적 금액 $50,000");
    private JLabel lastMonth = new JLabel("지난달 $0");
    
-   public TopPanel1() {
+   public TopPanel1(UserData userData) {
       setLayout(null);
       icon = new ImageIcon("./image/bgImg.png");
+      
       
       percent.setSize(600, 100);
       percent.setLocation(50, 50);
@@ -32,6 +36,7 @@ class TopPanel1 extends JPanel {
       percent.setFont(new Font("고딕",Font.BOLD,50));
       add(percent);
    
+      balance.setText("$"+Integer.toString(userData.getTotalMoney())+"남음");
       balance.setSize(600,100);
       balance.setLocation(50,150);
       perDay.setOpaque(false);
@@ -54,6 +59,7 @@ class TopPanel1 extends JPanel {
       date.setFont(new Font("고딕",Font.BOLD,40));
       add(date);
    
+      onToday.setText("잔액 $"+userData.getTotalMoney());
       onToday.setSize(600, 100);
       onToday.setLocation(50,450);
       perDay.setOpaque(false);
@@ -61,6 +67,7 @@ class TopPanel1 extends JPanel {
       onToday.setFont(new Font("고딕",Font.BOLD,40));
       add(onToday);
       
+      yester.setText("지출 누적 금액 $"+userData.getOutcomeMoney());
       yester.setSize(600, 80);
       yester.setLocation(50,550);
       perDay.setOpaque(false);
@@ -68,6 +75,7 @@ class TopPanel1 extends JPanel {
       yester.setFont(new Font("고딕",Font.BOLD,40));
       add(yester);
       
+      currentMonth.setText("수입 누적 금액 $"+userData.getIncomeMoney());
       currentMonth.setSize(600, 80);
       currentMonth.setLocation(50,630);
       perDay.setOpaque(false);

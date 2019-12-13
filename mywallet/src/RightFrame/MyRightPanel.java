@@ -5,6 +5,8 @@ import java.awt.Container;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -13,7 +15,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import config.DBconnection;
+import dao.GetWalletDao;
+import dao.IdDataDao;
+import dao.InsertDataDao;
 import main.MainFrame;
+import main.TopPanel1;
+import model.UserData;
 import myGraph.GraphPanel;
 
 
@@ -28,8 +36,10 @@ public class MyRightPanel extends JPanel {
     	private JButton ok = new JButton(new ImageIcon("./image/ok.png"));
     	private JButton check = new JButton(new ImageIcon("./image/check.png"));
     	
+    	int incomeOroutcome = 0; //in=0 out=1
+    
 
-    	public MyRightPanel(MainFrame mainframe) {
+    	public MyRightPanel(MainFrame mainframe, UserData userData, GetWalletDao getWalletDao, TopPanel1 tp) {
 			setLayout(null);
 				in.setSize(100, 30);
 				in.setLocation(160,60);
@@ -94,9 +104,26 @@ public class MyRightPanel extends JPanel {
 						for(int i=0; i<MainFrame.detail1.length; i++) {
 							combo.addItem(MainFrame.detail1[i]);
 						}
+						incomeOroutcome = 0;
 					}     
 		        });
 				
+				tf.addKeyListener(new KeyListener() {
+				        @Override
+				        public void keyTyped(KeyEvent e) {
+				        	label[0].setText(tf.getText());
+				        }
+				         
+				        @Override
+				        public void keyReleased(KeyEvent e) {
+				        	label[0].setText(tf.getText());
+				        }
+				         
+				        @Override
+				        public void keyPressed(KeyEvent e) {
+				        	label[0].setText(tf.getText());
+				        }
+				    });
 				
 				out.addActionListener( new ActionListener(){
 					
@@ -106,13 +133,33 @@ public class MyRightPanel extends JPanel {
 						for(int i=0; i<MainFrame.detail2.length; i++) {
 							combo.addItem(MainFrame.detail2[i]);
 						}
+						incomeOroutcome = 1;
 					}     
 		        });
 				ok.addActionListener( new ActionListener(){
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						label[0].setText(tf.getText());
-						// db
+						int money = Integer.parseInt(tf.getText());
+						int type = incomeOroutcome;
+						String category = combo.getItemAt(combo.getSelectedIndex());
+						
+						if(type == 0) {
+							// 수입 
+							InsertDataDao insertDataDao = new InsertDataDao();
+					        insertDataDao.insertIncomeData(new DBconnection(), money, type, category);
+					        insertDataDao.insertList(new DBconnection(), money, type, category);
+
+						} else {
+							// 지출
+							InsertDataDao insertDataDao = new InsertDataDao();
+							insertDataDao.insertOutcomeData(new DBconnection(), money, type, category);
+					        insertDataDao.insertList(new DBconnection(), money, type, category);
+						}
+						getWalletDao.getWalletData(new DBconnection(), userData);
+						mainframe.change("");
+						
+						
+
 					}
 				});
 
