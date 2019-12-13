@@ -11,8 +11,8 @@ import dao.InputDataDao;
 import myGraph.GraphPanel;
 
 public class MainFrame extends JFrame{
-	public static String detail1[] = {"월급","용돈","보너스","수당"};
-	public static String detail2[] = {"교통비", "식비", "문화생활", "쇼핑", "커피", "의류", "경조사", "자기계발", "운동", "데이트"};
+	public static String detail1[] = {"A","B"};
+	public static String detail2[] = {"식비", "문화생활", "쇼핑", "기타"};
 	
 	
 	
@@ -36,9 +36,9 @@ public class MainFrame extends JFrame{
         c.add(tp);
 
         
-        RP.setSize(500, 1000);
-        RP.setLocation(500,0);
-//        RP.setBackground(new Color(120,255,0));
+        RP.setSize(600, 1000);
+        RP.setLocation(600,0);
+        RP.setBackground(new Color(250,255,184));
         add(RP);
 
 
