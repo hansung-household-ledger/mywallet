@@ -7,7 +7,8 @@ import javax.swing.*;
 
 import RightFrame.MyRightPanel;
 import config.DBconnection;
-import dao.InputDataDao;
+import dao.*;
+import model.UserData;
 import myGraph.GraphPanel;
 
 public class MainFrame extends JFrame{
@@ -15,10 +16,13 @@ public class MainFrame extends JFrame{
 	public static String detail2[] = {"교통비", "식비", "문화생활", "쇼핑", "커피", "의류", "경조사", "자기계발", "운동", "데이트"};
 	
 	
-	
+	UserData userData = new UserData();
 	GraphPanel graphPanel = null;
 	MyRightPanel RP = null;
-	TopPanel1 tp = new TopPanel1();
+	TopPanel1 tp = null;
+	GetWalletDao getWalletDao = new GetWalletDao();
+	
+	
 	
     public MainFrame() {
         setTitle("mywallet project");
@@ -26,8 +30,10 @@ public class MainFrame extends JFrame{
         setSize(1000, 1000);
         setVisible(true);
         Container c = getContentPane();
+        getWalletDao.getWalletData(new DBconnection(), userData);
         graphPanel = new GraphPanel(this);
-        RP = new MyRightPanel(this);
+        tp = new TopPanel1(userData);
+        RP = new MyRightPanel(this, userData, getWalletDao, tp);
         // batch 
         c.setLayout(new GridLayout(1,2));
         // add panel example
@@ -41,12 +47,8 @@ public class MainFrame extends JFrame{
 //        RP.setBackground(new Color(120,255,0));
         add(RP);
 
-
-        DBconnection db = new DBconnection();
-        Connection conn = db.getConnection();
-        InputDataDao inputDataDao = new InputDataDao();
-        inputDataDao.productSelectAll(db,conn);
-//        add(graphPanel);
+        
+   
     }
     
     public void change(String panelName) {
