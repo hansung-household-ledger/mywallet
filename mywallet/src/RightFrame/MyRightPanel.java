@@ -76,7 +76,7 @@ public class MyRightPanel extends JPanel {
 				ok.setLocation(230, 300);
 				add(ok);
 				check.setSize(200, 30);
-				check.setLocation(180, 800);
+				check.setLocation(180, 700);
 				add(check);
 				
 				in.addActionListener( new ActionListener(){
