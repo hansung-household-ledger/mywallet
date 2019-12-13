@@ -41,8 +41,7 @@ public class DBconnection {
 		return this.connection;
 	}
 	
-	public void closeDatabase()
-	{
+	public void closeDatabase(){
 		try
 		{
 			if( connection != null )
@@ -64,43 +63,5 @@ public class DBconnection {
 		{
 			System.out.println("[닫기 오류]\n" +  e.getStackTrace());
 		}
-	}
-	
-
-	public void productSelectAll(Connection connection) {
-
-		try {
-			String queryString = "SELECT name FROM user";
-
-			// ② 연결 [Connection]
-//			connection = DriverManager.getConnection(url, user, password);
-
-			// ② 연결 [Statement]
-			statement = connection.createStatement();
-			
-			// ③ 실행 [CRUD]
-			resultSet = statement.executeQuery(queryString);
-			
-			// 컬럼 정보 가져오기
-			ResultSetMetaData resultSetMetaData = resultSet.getMetaData();
-
-			// 컬럼 출력
-			System.out.println(resultSetMetaData.getColumnName(1));
-
-			while (resultSet.next())
-			{
-				System.out.println(resultSet.getString("name"));
-			}
-		}
-		catch (SQLException e)
-		{
-			System.out.println("[쿼리 오류]\n" + e.getStackTrace());
-		}
-		finally
-		{
-			// ④ 닫기
-			closeDatabase();
-		}
-		
 	}
 }
