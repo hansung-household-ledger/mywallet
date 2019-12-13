@@ -69,8 +69,7 @@ public class DBconnection {
 
 	public void productSelectAll(Connection connection) {
 
-		try
-		{
+		try {
 			String queryString = "SELECT name FROM user";
 
 			// ② 연결 [Connection]
