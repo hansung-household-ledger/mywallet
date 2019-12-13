@@ -1,6 +1,8 @@
 package main;
 
 import java.awt.*;
+import java.util.Vector;
+
 import javax.swing.*;
 
 import RightFrame.MyRightPanel;
@@ -8,9 +10,14 @@ import RightFrame.MyRightPanel;
 import myGraph.GraphPanel;
 
 public class MainFrame extends JFrame{
-	public static String detail1[] = {"����","�뵷","���ʽ�","����"};
-	public static String detail2[] = {"�����", "�ĺ�", "��ȭ��Ȱ", "����", "Ŀ��", "�Ƿ�", "������", "�ڱ���", "�", "����Ʈ"};
-
+	public static String detail1[] = {"월급","용돈","보너스","수당"};
+	public static String detail2[] = {"교통비", "식비", "문화생활", "쇼핑", "커피", "의류", "경조사", "자기계발", "운동", "데이트"};
+	public static Vector incoming = new Vector();
+	public static Vector outgoing = new Vector();
+	public static int allincoming;
+	public static int alloutgoing;
+	public static int now = allincoming - alloutgoing;
+	
     public MainFrame() {
         setTitle("mywallet project");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -32,7 +39,7 @@ public class MainFrame extends JFrame{
         add(RP);
 
         GraphPanel graphPanel = new GraphPanel();
-        add(graphPanel);
+//        add(graphPanel);
 
     }
 	public static void main(String[] args) {
