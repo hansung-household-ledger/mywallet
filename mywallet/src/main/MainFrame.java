@@ -1,10 +1,12 @@
 package main;
 
 import java.awt.*;
+import java.sql.Connection;
+
 import javax.swing.*;
 
 import RightFrame.MyRightPanel;
-
+import config.DBconnection;
 import myGraph.GraphPanel;
 
 public class MainFrame extends JFrame{
@@ -37,7 +39,9 @@ public class MainFrame extends JFrame{
 //        RP.setBackground(new Color(120,255,0));
         add(RP);
 
-        
+        DBconnection db = new DBconnection();
+        Connection conn = db.getConnection();
+        db.productSelectAll(conn);
 //        add(graphPanel);
         
 
