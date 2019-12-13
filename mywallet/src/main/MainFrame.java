@@ -7,6 +7,7 @@ import javax.swing.*;
 
 import RightFrame.MyRightPanel;
 import config.DBconnection;
+import dao.InputDataDao;
 import myGraph.GraphPanel;
 
 public class MainFrame extends JFrame{
@@ -43,7 +44,8 @@ public class MainFrame extends JFrame{
 
         DBconnection db = new DBconnection();
         Connection conn = db.getConnection();
-        db.productSelectAll(conn);
+        InputDataDao inputDataDao = new InputDataDao();
+        inputDataDao.productSelectAll(db,conn);
 //        add(graphPanel);
     }
     
