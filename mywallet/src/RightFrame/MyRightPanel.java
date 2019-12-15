@@ -155,11 +155,9 @@ public class MyRightPanel extends JPanel {
 							insertDataDao.insertOutcomeData(new DBconnection(), money, type, category);
 					        insertDataDao.insertList(new DBconnection(), money, type, category);
 						}
-						getWalletDao.getWalletData(new DBconnection(), userData);
-						mainframe.change("");
-						
-						
-
+						getWalletDao.getWalletData(new DBconnection(), userData , tp);
+						label[0].setText("0");
+						tf.setText("0");
 					}
 				});
 

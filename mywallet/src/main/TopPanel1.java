@@ -15,14 +15,14 @@ public class TopPanel1 extends JPanel {
    String time1 = format1.format(time); 
 
    ImageIcon icon;
-   private JLabel percent = new JLabel("5%");
-   private JLabel balance = new JLabel("$950,000 남음");
-   private JLabel perDay = new JLabel("$33,333");
-   private JLabel date = new JLabel(time1);
-   private JLabel onToday = new JLabel("잔액 $50,000");
-   private JLabel yester = new JLabel("지출 누적 금액 $0");
-   private JLabel currentMonth = new JLabel("수입 누적 금액 $50,000");
-   private JLabel lastMonth = new JLabel("지난달 $0");
+   public JLabel percent = new JLabel("5%");
+   public JLabel balance = new JLabel("$950,000 남음");
+   public JLabel perDay = new JLabel("$33,333");
+   public JLabel date = new JLabel(time1);
+   public JLabel onToday = new JLabel("잔액 $50,000");
+   public JLabel yester = new JLabel("지출 누적 금액 $0");
+   public JLabel currentMonth = new JLabel("수입 누적 금액 $50,000");
+   public JLabel lastMonth = new JLabel("지난달 $0");
    
    public TopPanel1(UserData userData) {
       setLayout(null);

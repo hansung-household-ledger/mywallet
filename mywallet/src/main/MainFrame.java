@@ -19,7 +19,7 @@ public class MainFrame extends JFrame{
 	UserData userData = new UserData();
 	GraphPanel graphPanel = null;
 	MyRightPanel RP = null;
-	TopPanel1 tp = null;
+	TopPanel1 tp = new TopPanel1(userData);
 	GetWalletDao getWalletDao = new GetWalletDao();
 	
 	
@@ -30,9 +30,9 @@ public class MainFrame extends JFrame{
         setSize(1000, 1000);
         setVisible(true);
         Container c = getContentPane();
-        getWalletDao.getWalletData(new DBconnection(), userData);
+        getWalletDao.getWalletData(new DBconnection(), userData, tp);
         graphPanel = new GraphPanel(this);
-        tp = new TopPanel1(userData);
+//        tp = new TopPanel1(userData);
         RP = new MyRightPanel(this, userData, getWalletDao, tp);
         // batch 
         c.setLayout(new GridLayout(1,2));

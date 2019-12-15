@@ -6,11 +6,12 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import config.DBconnection;
+import main.TopPanel1;
 import model.UserData;
 
 public class GetWalletDao {
 	
-	public void getWalletData(DBconnection db, UserData userData) {
+	public void getWalletData(DBconnection db, UserData userData, TopPanel1 tp) {
 		Statement statement;
 		ResultSet resultSet;
 		
@@ -33,6 +34,11 @@ public class GetWalletDao {
 			{
 				userData.setUserData(resultSet.getInt("user_total_money"), resultSet.getInt("user_income_total"), resultSet.getInt("user_outcome_total"));
 				System.out.println(resultSet.getInt("user_total_money") + "\t" + resultSet.getInt("user_income_total") + "\t" + resultSet.getInt("user_outcome_total"));
+				tp.balance.setText("$"+Integer.toString(userData.getTotalMoney())+"남음");
+				tp.onToday.setText("잔액 $"+userData.getTotalMoney());
+				tp.yester.setText("지출 누적 금액 $"+userData.getOutcomeMoney());
+				tp.currentMonth.setText("수입 누적 금액 $"+userData.getIncomeMoney());
+				
 			}
 			
 		}
