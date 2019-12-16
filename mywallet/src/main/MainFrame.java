@@ -30,10 +30,10 @@ public class MainFrame extends JFrame{
         setSize(1000, 1000);
         setVisible(true);
         Container c = getContentPane();
-        getWalletDao.getWalletData(new DBconnection(), userData, tp);
         graphPanel = new GraphPanel(this);
+        getWalletDao.getWalletData(new DBconnection(), userData, tp, graphPanel);
 //        tp = new TopPanel1(userData);
-        RP = new MyRightPanel(this, userData, getWalletDao, tp);
+        RP = new MyRightPanel(this, userData, getWalletDao, tp, graphPanel);
         // batch 
         c.setLayout(new GridLayout(1,2));
         // add panel example
