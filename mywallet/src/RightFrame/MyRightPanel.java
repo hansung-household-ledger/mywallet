@@ -39,7 +39,7 @@ public class MyRightPanel extends JPanel {
     	int incomeOroutcome = 0; //in=0 out=1
     
 
-    	public MyRightPanel(MainFrame mainframe, UserData userData, GetWalletDao getWalletDao, TopPanel1 tp) {
+    	public MyRightPanel(MainFrame mainframe, UserData userData, GetWalletDao getWalletDao, TopPanel1 tp,GraphPanel graphPanel) {
 			setLayout(null);
 				in.setSize(100, 30);
 				in.setLocation(160,60);
@@ -155,7 +155,7 @@ public class MyRightPanel extends JPanel {
 							insertDataDao.insertOutcomeData(new DBconnection(), money, type, category);
 					        insertDataDao.insertList(new DBconnection(), money, type, category);
 						}
-						getWalletDao.getWalletData(new DBconnection(), userData , tp);
+						getWalletDao.getWalletData(new DBconnection(), userData , tp, graphPanel);
 						label[0].setText("0");
 						tf.setText("0");
 					}

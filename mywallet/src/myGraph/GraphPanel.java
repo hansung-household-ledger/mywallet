@@ -29,6 +29,10 @@ public class GraphPanel extends JPanel{
 	private JRadioButton radiobutton2 = new JRadioButton("수입");
 	private JLabel totalMoney = new JLabel("지출합계 : ₩30,000 수입합계 : ₩50,000 남은 자산 ₩20,000");
 	
+	public void setTotalMoney (int data1, int data2, int data3) {
+		totalMoney.setText("지출합계 : ₩"+data1 +" 수입합계 : ₩"+data2 +" 남은 자산 ₩"+data3);
+	}
+	
 	private JButton backButton = new JButton("뒤로 가기");
 	
 	ChartPanel chartPanel = new ChartPanel(); // 원 차트패널
