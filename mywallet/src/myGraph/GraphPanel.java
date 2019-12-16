@@ -23,36 +23,34 @@ public class GraphPanel extends JPanel{
 	String[] itemName = {"교통비", "식비", "문화생활", "쇼핑", "커피", "의류", "경조사", "자기계발", "운동", "데이트"};
 	
 	private JLabel label = new JLabel("월별 내역");
-	private JLabel label2 = new JLabel("통계");
+	private JLabel label2 = new JLabel(new ImageIcon("./image/stats.png"));
 	private JLabel label3 = new JLabel("지출 유형별 내역");
 	private JRadioButton radiobutton1 = new JRadioButton("지출"); // 
 	private JRadioButton radiobutton2 = new JRadioButton("수입");
 	private JLabel totalMoney = new JLabel("지출합계 : ₩30,000 수입합계 : ₩50,000 남은 자산 ₩20,000");
 	
-	private JButton backButton = new JButton("뒤로 가기");
+	private JButton backButton = new JButton(new ImageIcon("./image/back.png"));
 	
 	ChartPanel chartPanel = new ChartPanel(); // 원 차트패널
 	DrawingPanel drawingPanel = new DrawingPanel(outcome, income);
 		
 	public GraphPanel (MainFrame mainframe) {
         setLayout(null);
-        
-        backButton.setSize(80,30);
+        this.setBackground(new Color(250,255,184));
+        backButton.setSize(134,30);
         backButton.setLocation(20, 10);
         add(backButton);
         
-        label.setSize(80,30);
+        label.setSize(120,30);
         label.setLocation(400, 100);
         label.setFont(label.getFont().deriveFont(20.0f));
         add(label);
         
-        label2.setSize(80,30);
-        label2.setLocation(800, 50);
-        label2.setFont(label2.getFont().deriveFont(25.0f));
-        label2.setForeground(Color.BLUE);
+        label2.setSize(562,142);
+        label2.setLocation(620, 10);
         add(label2);
         
-        label3.setSize(150,50);
+        label3.setSize(200,50);
         label3.setLocation(1200, 100);
         label3.setFont(label3.getFont().deriveFont(20.0f));
         add(label3);
@@ -138,7 +136,6 @@ public class GraphPanel extends JPanel{
 		public void paintComponent(Graphics g){
  
 			super.paintComponent(g);//부모 패인트호출
- 
 			int startAngle = 0;
 			int z=0;
 			for(int i=0;i<data.length;i++){
@@ -165,6 +162,7 @@ public class GraphPanel extends JPanel{
 		
 		private int[] outcome; // 총 지출 
 		private int[] income;
+		
 		
 		 public void paint(Graphics g) {
 			 boolean check1 = radiobutton1.isSelected();

@@ -31,8 +31,8 @@ public class MyRightPanel extends JPanel {
     	private JTextField tf = new JTextField();
     	public static JComboBox<String> combo = new JComboBox(MainFrame.detail1);
     	
-    	private JButton in = new JButton("수입");
-    	private JButton out = new JButton("지출");
+    	private JButton in = new JButton(new ImageIcon("./image/in1.png"));
+    	private JButton out = new JButton(new ImageIcon("./image/out.png"));
     	private JButton ok = new JButton(new ImageIcon("./image/ok.png"));
     	private JButton check = new JButton(new ImageIcon("./image/check.png"));
     	
@@ -41,18 +41,13 @@ public class MyRightPanel extends JPanel {
 
     	public MyRightPanel(MainFrame mainframe, UserData userData, GetWalletDao getWalletDao, TopPanel1 tp) {
 			setLayout(null);
-				in.setSize(100, 30);
-				in.setLocation(160,60);
-				in.setBackground(Color.MAGENTA);
-				in.setForeground(Color.BLACK);
-				in.setFont(new Font("맑은고딕", Font.BOLD, 25));
+				in.setSize(100, 41);
+				in.setLocation(170,60);
+				
 
 				add(in);
-				out.setSize(100, 30);
-				out.setLocation(260,60);
-				out.setBackground(Color.BLUE);
-				out.setForeground(Color.BLACK);
-				out.setFont(new Font("맑은고딕", Font.BOLD, 25));
+				out.setSize(100, 41);
+				out.setLocation(270,60);
 				add(out);
 				label[0] = new JLabel("0");
 				label[0].setSize(240, 30);
@@ -89,12 +84,11 @@ public class MyRightPanel extends JPanel {
 				add(combo);
 				ok.setSize(100,53);
 				ok.setLocation(230, 300);
-		        ok.setBorderPainted(false);
-
 				add(ok);
 				check.setSize(200, 36);
 				check.setLocation(180, 900);
-				check.setBorderPainted(false);
+				//check.setBorderPainted(false);
+				
 				add(check);
 				
 				in.addActionListener( new ActionListener(){
