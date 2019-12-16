@@ -7,12 +7,13 @@ import java.sql.Statement;
 
 import config.DBconnection;
 import main.TopPanel1;
+import model.ListObjectdata;
 import model.UserData;
 import myGraph.GraphPanel;
 
 public class GetWalletDao {
 	
-	public void getWalletData(DBconnection db, UserData userData, TopPanel1 tp, GraphPanel graphPanel) {
+	public void getWalletData(DBconnection db, UserData userData, TopPanel1 tp, GraphPanel graphPanel, ListObjectdata listObjectData) {
 		Statement statement;
 		ResultSet resultSet;
 		
@@ -54,5 +55,44 @@ public class GetWalletDao {
 			db.closeDatabase();
 		}
 		
+	}
+	
+	public void getwalletListDao(DBconnection db, UserData userData, TopPanel1 tp, GraphPanel graphPanel, ListObjectdata listObjectData) {
+		Statement statement;
+		ResultSet resultSet;
+		
+		try {
+			String queryString = "select list_detail_category, list_money, list_type FROM mywallet.list where user_idx=1 order by list_idx DESC;";
+			
+			// ② 연결 [Statement]
+			statement = db.getConnection().createStatement();
+			
+			// ③ 실행 [CRUD]
+			resultSet = statement.executeQuery(queryString);
+			// 컬럼 정보 가져오기
+			ResultSetMetaData resultSetMetaData = resultSet.getMetaData();
+			
+			while (resultSet.next()) {
+
+				listObjectData.setListData( resultSet.getString("list_detail_category"), resultSet.getInt("list_money"), resultSet.getInt("list_type"));
+			}
+		
+			
+			for(int i=0; i<listObjectData.listData.size(); i++) {
+				Object[] newROw = {listObjectData.listData.get(i).list_type, listObjectData.listData.get(i).list_detail_category, listObjectData.listData.get(i).list_money};
+				tp.defaultTableModel.addRow(newROw);
+			}	
+			
+		}
+		catch (SQLException e)
+		{
+			System.out.println("[쿼리 오류]\n" + e.getStackTrace());
+		}
+		finally
+		{
+
+			// ④ 닫기
+			db.closeDatabase();
+		}
 	}
 }

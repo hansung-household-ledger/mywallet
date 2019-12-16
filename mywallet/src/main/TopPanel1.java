@@ -1,12 +1,20 @@
 package main;
 
-import javax.swing.*;
-
-import model.UserData;
-
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
+import model.ListData;
+import model.UserData;
 
 public class TopPanel1 extends JPanel {
    //날짜
@@ -14,6 +22,22 @@ public class TopPanel1 extends JPanel {
    Date time = new Date();
    String time1 = format1.format(time); 
 
+   String columnNames[] =
+		{ "지출/수입", "유형", "금액" };
+
+   public ListData rowData[] = new ListData[10];
+   
+   public DefaultTableModel defaultTableModel = new DefaultTableModel(new String[] { "지출/수입", "유형", "금액" }, 0)
+	{
+		@Override
+		public boolean isCellEditable(int row, int column)
+		{
+			return false;
+		}
+		
+	};
+   
+   
    ImageIcon icon;
    public JLabel percent = new JLabel("5%");
    public JLabel balance = new JLabel("$950,000 남음");
@@ -23,6 +47,8 @@ public class TopPanel1 extends JPanel {
    public JLabel yester = new JLabel("지출 누적 금액 $0");
    public JLabel currentMonth = new JLabel("수입 누적 금액 $50,000");
    public JLabel lastMonth = new JLabel("지난달 $0");
+   public JTable jTable = new JTable(defaultTableModel);
+   JScrollPane jScollPane = new JScrollPane(jTable);
    
    public TopPanel1(UserData userData) {
       setLayout(null);
@@ -89,6 +115,11 @@ public class TopPanel1 extends JPanel {
       lastMonth.setForeground(Color.WHITE);
       lastMonth.setFont(new Font("고딕",Font.BOLD,40));
       add(lastMonth);
+      
+      
+      jScollPane.setSize(300, 200);
+      jScollPane.setLocation(350,710);
+      add(jScollPane);
       
    }
    public void paintComponent(Graphics g) {

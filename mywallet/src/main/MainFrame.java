@@ -1,13 +1,15 @@
 package main;
 
-import java.awt.*;
-import java.sql.Connection;
+import java.awt.Color;
+import java.awt.Container;
+import java.awt.GridLayout;
 
-import javax.swing.*;
+import javax.swing.JFrame;
 
 import RightFrame.MyRightPanel;
 import config.DBconnection;
-import dao.*;
+import dao.GetWalletDao;
+import model.ListObjectdata;
 import model.UserData;
 import myGraph.GraphPanel;
 
@@ -17,9 +19,10 @@ public class MainFrame extends JFrame{
 	
 	
 	UserData userData = new UserData();
+	ListObjectdata listObjectData = new ListObjectdata();
 	GraphPanel graphPanel = null;
 	MyRightPanel RP = null;
-	TopPanel1 tp = new TopPanel1(userData);
+	TopPanel1 tp = null;
 	GetWalletDao getWalletDao = new GetWalletDao();
 	
 	
@@ -31,9 +34,11 @@ public class MainFrame extends JFrame{
         setVisible(true);
         Container c = getContentPane();
         graphPanel = new GraphPanel(this);
-        getWalletDao.getWalletData(new DBconnection(), userData, tp, graphPanel);
+        tp =  new TopPanel1(userData);
+        getWalletDao.getwalletListDao(new DBconnection(), userData, tp, graphPanel, listObjectData);
+        getWalletDao.getWalletData(new DBconnection(), userData, tp, graphPanel, listObjectData);
 //        tp = new TopPanel1(userData);
-        RP = new MyRightPanel(this, userData, getWalletDao, tp, graphPanel);
+        RP = new MyRightPanel(this, userData, getWalletDao, tp, graphPanel, listObjectData);
         // batch 
         c.setLayout(new GridLayout(1,2));
         // add panel example
