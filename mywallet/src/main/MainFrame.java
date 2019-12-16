@@ -1,8 +1,11 @@
 package main;
 
-import java.awt.Color;
 import java.awt.Container;
+import java.io.File;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.JFrame;
 
 import RightFrame.MyRightPanel;
@@ -26,6 +29,7 @@ public class MainFrame extends JFrame{
 	GetWalletDao getWalletDao = new GetWalletDao();
 	
     public MainFrame() {
+    	play();
         setTitle("mywallet project");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1800, 1000);
@@ -74,6 +78,21 @@ public class MainFrame extends JFrame{
     		revalidate();
     		repaint();
     	}
+    }
+    
+    public void play() {
+        try {
+
+            File f = new File("./image/Carol.wav");
+
+            AudioInputStream ais = AudioSystem.getAudioInputStream(f);
+            Clip clip = AudioSystem.getClip();
+            clip.stop();
+            clip.open(ais);
+            clip.start();
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }
     
 	public static void main(String[] args) {
