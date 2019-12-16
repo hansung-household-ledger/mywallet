@@ -12,7 +12,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
+import model.ListData;
 import model.UserData;
 
 public class TopPanel1 extends JPanel {
@@ -23,15 +27,31 @@ public class TopPanel1 extends JPanel {
    
    static String ddaycount="처음만난 날 입력해주세요";
    
+   String columnNames[] =
+		{ "지출/수입", "유형", "금액" };
+
+   public ListData rowData[] = new ListData[10];
+  
+   public DefaultTableModel defaultTableModel = new DefaultTableModel(new String[] { "지출/수입", "유형", "금액" }, 0) {
+		@Override
+		public boolean isCellEditable(int row, int column)
+		{
+			return false;
+		}
+		
+	};
+	
    ImageIcon icon;
-   private JLabel percent = new JLabel("5%");
-   private JLabel balance = new JLabel("$950,000 남음");
-   private JLabel perDay = new JLabel("$33,333");
-   private JLabel date = new JLabel(time1);
-   private JLabel onToday = new JLabel("잔액 $50,000");
-   private JLabel yester = new JLabel("지출 누적 금액 $0");
-   private JLabel currentMonth = new JLabel("수입 누적 금액 $50,000");
-   private JLabel lastMonth = new JLabel("지난달 $0");
+   public JLabel percent = new JLabel("5%");
+   public JLabel balance = new JLabel("$950,000 남음");
+   public JLabel perDay = new JLabel("$33,333");
+   public JLabel date = new JLabel(time1);
+   public JLabel onToday = new JLabel("잔액 $50,000");
+   public JLabel yester = new JLabel("지출 누적 금액 $0");
+   public JLabel currentMonth = new JLabel("수입 누적 금액 $50,000");
+   public JLabel lastMonth = new JLabel("지난달 $0");
+   public JTable jTable = new JTable(defaultTableModel);
+   JScrollPane jScollPane = new JScrollPane(jTable);
    private JButton ddayIn = new JButton("D-Day입력");
    private static JLabel dday = new JLabel();
    
@@ -74,7 +94,7 @@ public class TopPanel1 extends JPanel {
       perDay.setFont(new Font("고딕",Font.BOLD,20));
       add(perDay);
 
-      date.setSize(750, 50);
+      date.setSize(600, 50);
       date.setLocation(200,350);
       date.setOpaque(false);
       date.setBackground(Color.GRAY);
@@ -113,6 +133,7 @@ public class TopPanel1 extends JPanel {
       lastMonth.setFont(new Font("고딕",Font.BOLD,40));
       add(lastMonth);
       
+
       ddayIn.addActionListener(new ActionListener() {
    	   @Override
    	   public void actionPerformed(ActionEvent e) {
@@ -120,12 +141,17 @@ public class TopPanel1 extends JPanel {
    	   }
       });
 
+      jScollPane.setSize(300, 200);
+      jScollPane.setLocation(350,710);
+      add(jScollPane);
    }
+   
    public void paintComponent(Graphics g) {
       g.drawImage(icon.getImage(),0,0,null);
       setOpaque(false);
       super.paintComponent(g);
    }
+   
    public static void getDday(int count) {
 	   ddaycount = Integer.toString(count);
 	   dday.setFont(new Font("고딕",Font.BOLD,40));

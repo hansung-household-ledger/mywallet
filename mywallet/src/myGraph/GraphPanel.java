@@ -1,6 +1,7 @@
 package myGraph;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -22,50 +23,54 @@ public class GraphPanel extends JPanel{
 			Color.pink, Color.white, Color.yellow};
 	String[] itemName = {"교통비", "식비", "문화생활", "쇼핑", "커피", "의류", "경조사", "자기계발", "운동", "데이트"};
 	
-	private JLabel label = new JLabel("월별 내역");
-	private JLabel label2 = new JLabel("통계");
-	private JLabel label3 = new JLabel("지출 유형별 내역");
-	private JRadioButton radiobutton1 = new JRadioButton("지출"); // 
+	private JLabel label = new JLabel(new ImageIcon("./image/month.png")); //월별내역
+	private JLabel label2 = new JLabel(new ImageIcon("./image/stats.png")); //통계확인
+	private JLabel label3 = new JLabel(new ImageIcon("./image/type.png")); //유형별내역
+	private JRadioButton radiobutton1 = new JRadioButton("지출");
 	private JRadioButton radiobutton2 = new JRadioButton("수입");
 	private JLabel totalMoney = new JLabel("지출합계 : ₩30,000 수입합계 : ₩50,000 남은 자산 ₩20,000");
 	
-	private JButton backButton = new JButton("뒤로 가기");
+	private JButton backButton = new JButton(new ImageIcon("./image/back.png"));
+
+	public void setTotalMoney (int data1, int data2, int data3) {
+		totalMoney.setText("지출합계 : ₩"+data1 +" 수입합계 : ₩"+data2 +" 남은 자산 ₩"+data3);
+	}
 	
 	ChartPanel chartPanel = new ChartPanel(); // 원 차트패널
 	DrawingPanel drawingPanel = new DrawingPanel(outcome, income);
 		
 	public GraphPanel (MainFrame mainframe) {
         setLayout(null);
-        
-        backButton.setSize(80,30);
+        this.setBackground(new Color(250,255,184));
+        backButton.setSize(134,31);
         backButton.setLocation(20, 10);
         add(backButton);
         
-        label.setSize(80,30);
-        label.setLocation(400, 100);
-        label.setFont(label.getFont().deriveFont(20.0f));
+        label.setSize(237,50);
+        label.setLocation(400, 240);
+        
         add(label);
         
-        label2.setSize(80,30);
-        label2.setLocation(800, 50);
-        label2.setFont(label2.getFont().deriveFont(25.0f));
-        label2.setForeground(Color.BLUE);
+        label2.setSize(562,164);
+        label2.setLocation(620, 10);
         add(label2);
         
-        label3.setSize(150,50);
-        label3.setLocation(1200, 100);
-        label3.setFont(label3.getFont().deriveFont(20.0f));
+        label3.setSize(341,50);
+        label3.setLocation(1150, 240);
+        
         add(label3);
         
         radiobutton1.setSize(60,30);
-        radiobutton1.setLocation(600, 180);
-        radiobutton1.setFont(radiobutton1.getFont().deriveFont(12.0f));
+        radiobutton1.setLocation(600, 300);
+        radiobutton1.setBackground(new Color(250,255,184));
+
         add(radiobutton1);
         radiobutton1.setSelected(true);
         
         radiobutton2.setSize(60,30);
-        radiobutton2.setLocation(700, 180);
-        radiobutton2.setFont(radiobutton2.getFont().deriveFont(12.0f));
+        radiobutton2.setLocation(700, 300);
+        radiobutton2.setBackground(new Color(250,255,184));
+
         add(radiobutton2);
         
         
@@ -76,6 +81,7 @@ public class GraphPanel extends JPanel{
 
         chartPanel.setSize(700,250);
         chartPanel.setLocation(1000, 350);
+        chartPanel.setBackground(new Color(0,189,255));
         add(chartPanel);
         
         drawingPanel.setSize(800,300);
@@ -128,6 +134,7 @@ public class GraphPanel extends JPanel{
 			chartPanel.repaint(); // 차트패널의 PAINT호출
 		}
 	}
+	
 	private void drawString(Graphics g, String text, int x, int y) {
         for (String line : text.split("\n"))
             g.drawString(line, x, y += g.getFontMetrics().getHeight());
@@ -138,18 +145,18 @@ public class GraphPanel extends JPanel{
 		public void paintComponent(Graphics g){
  
 			super.paintComponent(g);//부모 패인트호출
- 
 			int startAngle = 0;
 			int z=0;
 			for(int i=0;i<data.length;i++){
 				if(i > 4) {
 					g.setColor(color[i]);
+					g.setFont(new Font("궁서", Font.BOLD, 15));
 					drawString(g, itemName[i]+""+Math.round(arcAngle[i]*100/360)+"%\n", 50+z*100, 30);
 					z++;
 				} else {
 					g.setColor(color[i]);
-					g.drawString(itemName[i]+""+Math.round
-				   (arcAngle[i]*100/360)+"%", 50+i*100,20);
+					g.setFont(new Font("궁서", Font.BOLD, 15));
+					g.drawString(itemName[i]+""+Math.round(arcAngle[i]*100/360)+"%", 50+i*100, 20);
 				}
 			}
  
@@ -165,6 +172,7 @@ public class GraphPanel extends JPanel{
 		
 		private int[] outcome; // 총 지출 
 		private int[] income;
+		
 		
 		 public void paint(Graphics g) {
 			 boolean check1 = radiobutton1.isSelected();
