@@ -32,7 +32,7 @@ public class TopPanel1 extends JPanel {
 
    public ListData rowData[] = new ListData[10];
   
-   public DefaultTableModel defaultTableModel = new DefaultTableModel(new String[] { "지출/수입", "유형", "금액" }, 0) {
+   public DefaultTableModel defaultTableModel = new DefaultTableModel(new String[] { "요일", "지출/수입", "유형", "금액" }, 0) {
 		@Override
 		public boolean isCellEditable(int row, int column)
 		{
