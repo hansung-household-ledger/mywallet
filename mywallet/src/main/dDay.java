@@ -18,7 +18,7 @@ public class dDay extends JFrame {
 	JButton okey = new JButton("확인");
 	public dDay() {
 		setTitle("Dday 입력해주세요");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Container c = getContentPane();
 		c.setLayout(new FlowLayout());
 		
