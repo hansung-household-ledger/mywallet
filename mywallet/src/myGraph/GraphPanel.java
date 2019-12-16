@@ -6,22 +6,28 @@ import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.*;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 
 import main.MainFrame;
+import model.ListData;
+import model.ListObjectdata;
 
 public class GraphPanel extends JPanel{
 	
 	
-	private int[] outcome = {30, 40, 50, 60, 70, 80, 90, 100}; // 총 지출 
-	private int[] income = {10, 20, 30, 40, 50, 60, 70, 80}; // 총 지출 
+	public int[] outcome = new int[1]; // 총 지출 
+	public int[] income = new int[1]; // 총 지출 
 	
-	int[] data = {10,20,30,40,50,60,70,80,90,20}; // 차트의 값 저장배열
+	
 	int[] arcAngle = new int[10];
 	
 	Color[] color = {Color.RED, Color.BLUE, Color.MAGENTA, Color.ORANGE,Color.black, Color.cyan, Color.green,
 			Color.pink, Color.white, Color.yellow};
-	String[] itemName = {"교통비", "식비", "문화생활", "쇼핑", "커피", "의류", "경조사", "자기계발", "운동", "데이트"};
+	String[] itemName = {"식비", "문화생활", "쇼핑", "기타"};
 	
 	private JLabel label = new JLabel(new ImageIcon("./image/month.png")); //월별내역
 	private JLabel label2 = new JLabel(new ImageIcon("./image/stats.png")); //통계확인
@@ -31,15 +37,25 @@ public class GraphPanel extends JPanel{
 	private JLabel totalMoney = new JLabel("지출합계 : ₩30,000 수입합계 : ₩50,000 남은 자산 ₩20,000");
 	
 	private JButton backButton = new JButton(new ImageIcon("./image/back.png"));
-
+	
+	int[] data;
+	
 	public void setTotalMoney (int data1, int data2, int data3) {
 		totalMoney.setText("지출합계 : ₩"+data1 +" 수입합계 : ₩"+data2 +" 남은 자산 ₩"+data3);
 	}
 	
-	ChartPanel chartPanel = new ChartPanel(); // 원 차트패널
-	DrawingPanel drawingPanel = new DrawingPanel(outcome, income);
+	public ChartPanel chartPanel = new ChartPanel(); // 원 차트패널
+	
+	
+
+	
+	public GraphPanel (MainFrame mainframe, ListObjectdata listObjectData) {
 		
-	public GraphPanel (MainFrame mainframe) {
+        data = new int[]{listObjectData.food, listObjectData.culture, listObjectData.shopping, listObjectData.ect };
+        outcome = new int[] {listObjectData.outweek[0],listObjectData.outweek[1],listObjectData.outweek[2],listObjectData.outweek[3],listObjectData.outweek[4],listObjectData.outweek[5],listObjectData.outweek[6]};
+        income = new int[] {listObjectData.inweek[0], listObjectData.inweek[1], listObjectData.inweek[2], listObjectData.inweek[3], listObjectData.inweek[4], listObjectData.inweek[5], listObjectData.inweek[6]};
+        DrawingPanel drawingPanel = new DrawingPanel(outcome, income);
+        
         setLayout(null);
         this.setBackground(new Color(250,255,184));
         backButton.setSize(134,31);
@@ -81,13 +97,14 @@ public class GraphPanel extends JPanel{
 
         chartPanel.setSize(700,250);
         chartPanel.setLocation(1000, 350);
-        chartPanel.setBackground(new Color(0,189,255));
+        chartPanel.setBackground(new Color(250,255,184));
         add(chartPanel);
         
         drawingPanel.setSize(800,300);
         drawingPanel.setLocation(100,350);
         drawingPanel.setBackground(null);
         add(drawingPanel);
+        
         
         drawChart(); // 차트 메소드 호출
         
@@ -121,7 +138,8 @@ public class GraphPanel extends JPanel{
 	
 	
 	
-	void drawChart(){ // 차트를 그린다
+	
+	public void drawChart(){ // 차트를 그린다
 		int sum=0; // 초기값 0
 		for(int i=0;i<data.length;i++){ // 데이터 값만큼 루프
 			sum+=data[i];
@@ -140,14 +158,14 @@ public class GraphPanel extends JPanel{
             g.drawString(line, x, y += g.getFontMetrics().getHeight());
     }
 	
-	class ChartPanel extends JPanel{ // 차트 표시 패널
+	public class ChartPanel extends JPanel{ // 차트 표시 패널
 		 
 		public void paintComponent(Graphics g){
  
 			super.paintComponent(g);//부모 패인트호출
 			int startAngle = 0;
 			int z=0;
-			for(int i=0;i<data.length;i++){
+			for(int i=0;i<4;i++){
 				if(i > 4) {
 					g.setColor(color[i]);
 					g.setFont(new Font("궁서", Font.BOLD, 15));
@@ -160,7 +178,7 @@ public class GraphPanel extends JPanel{
 				}
 			}
  
-			for(int i=0;i<data.length;i++){
+			for(int i=0;i<4;i++){
 				g.setColor(color[i]);
 				g.fillArc(150,50,200,200,startAngle,arcAngle[i]);
 				startAngle = startAngle + arcAngle[i];
@@ -195,9 +213,18 @@ public class GraphPanel extends JPanel{
 					 g.drawString("Sat",600,270);
 					 g.drawString("Sun",700,270);
 					 g.setColor(Color.RED);
+					 double total = 0;
+					 for(int j=0; j<outcome.length; j++) {
+						 total += outcome[j];
+					 }
 					 for(int i=0; i<outcome.length; i++) {
-						 if(outcome[i] > 0)
-							 g.fillRect(110+(100*i), 250-outcome[i]*2, 10, outcome[i]*2);
+						 //Math.round(arcAngle[i]*100/360)
+						 //일부값 ÷ 전체값 X 100
+//						 outcome[i] / total*100
+						 if(outcome[i] > 0) {
+						 	 int percent = (int)((double)outcome[i] / (double)total * 100.0);
+							 g.fillRect(110+(100*i), 250-percent, 10, (int)((double)outcome[i] / (double)total * 100.0));
+						 }
 					 }
 			 	} else if (check2 == true) {
 			 		g.drawLine(50,20,50,250);
@@ -209,9 +236,14 @@ public class GraphPanel extends JPanel{
 					 g.drawString("Sat",600,270);
 					 g.drawString("Sun",700,270);
 					 g.setColor(Color.BLUE);
+					 double total2 = 0;
+					 for(int j=0; j<income.length; j++) {
+						 total2 += income[j];
+					 }
 					 for(int i=0; i<income.length; i++) {
 						 if(income[i] > 0)
-							 g.fillRect(110+(100*i), 250-income[i]*2, 10, income[i]*2);
+							 System.out.println((int)((double)income[i] / (double)total2 * 100.0));
+							 g.fillRect(110+(100*i), 250-(int)((double)income[i] / (double)total2 * 100.0), 10, (int)((double)income[i] / (double)total2 * 100.0));
 					 }
 			 	}
 		 }

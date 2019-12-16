@@ -35,7 +35,8 @@ public class TopPanel1 extends JPanel {
 
    public ListData rowData[] = new ListData[10];
   
-   public DefaultTableModel defaultTableModel = new DefaultTableModel(new String[] { "지출/수입", "유형", "금액" }, 0){
+
+   public DefaultTableModel defaultTableModel = new DefaultTableModel(new String[] { "요일", "지출/수입", "유형", "금액" }, 0) {
 		@Override
 		public boolean isCellEditable(int row, int column)
 		{
@@ -55,14 +56,19 @@ public class TopPanel1 extends JPanel {
    public JLabel lastMonth = new JLabel("지난달 $0");
    public JTable jTable = new JTable(defaultTableModel);
    JScrollPane jScollPane = new JScrollPane(jTable);
-   private JButton ddayIn = new JButton("D-Day입력");
+   private JButton ddayIn = new JButton(new ImageIcon("./image/dday.png"));
    private static JLabel dday = new JLabel();
-   
+   private JLabel love = new JLabel(new ImageIcon("./image/love.png"));
    public TopPanel1(UserData userData) {
       setLayout(null);
       icon = new ImageIcon("./image/bgImg.png");
       
-      ddayIn.setSize(200,40);
+
+      love.setLocation(475, 25);
+      love.setSize(300,300);
+      add(love);
+      
+      ddayIn.setSize(250,52);
       ddayIn.setLocation(0, 900);
       ddayIn.setFont(new Font("맑은고딕", Font.BOLD, 25));
       add(ddayIn);
