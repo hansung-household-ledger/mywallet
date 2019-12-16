@@ -8,20 +8,21 @@ import java.sql.Statement;
 
 import config.DBconnection;
 
-public class InputDataDao {
-	
-	public void productSelectAll(DBconnection db,Connection connection) {
+
+public class IdDataDao {
+
+	public void idSelectAll(DBconnection db) {
 		Statement statement;
 		ResultSet resultSet;
 		
 		try {
-			String queryString = "SELECT name FROM user";
-
+			String queryString = "SELECT id FROM user";
+			
 			// ② 연결 [Connection]
 //			connection = DriverManager.getConnection(url, user, password);
-
+			
 			// ② 연결 [Statement]
-			statement = connection.createStatement();
+			statement = db.getConnection().createStatement();
 			
 			// ③ 실행 [CRUD]
 			resultSet = statement.executeQuery(queryString);
@@ -34,7 +35,7 @@ public class InputDataDao {
 
 			while (resultSet.next())
 			{
-				System.out.println(resultSet.getString("name"));
+				System.out.println(resultSet.getString("id"));
 			}
 		}
 		catch (SQLException e)
