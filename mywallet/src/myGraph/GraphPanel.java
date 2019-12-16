@@ -22,10 +22,10 @@ public class GraphPanel extends JPanel{
 			Color.pink, Color.white, Color.yellow};
 	String[] itemName = {"교통비", "식비", "문화생활", "쇼핑", "커피", "의류", "경조사", "자기계발", "운동", "데이트"};
 	
-	private JLabel label = new JLabel("월별 내역");
-	private JLabel label2 = new JLabel(new ImageIcon("./image/stats.png"));
-	private JLabel label3 = new JLabel("지출 유형별 내역");
-	private JRadioButton radiobutton1 = new JRadioButton("지출"); // 
+	private JLabel label = new JLabel(new ImageIcon("./image/month.png")); //월별내역
+	private JLabel label2 = new JLabel(new ImageIcon("./image/stats.png")); //통계확인
+	private JLabel label3 = new JLabel(new ImageIcon("./image/type.png")); //유형별내역
+	private JRadioButton radiobutton1 = new JRadioButton("지출");
 	private JRadioButton radiobutton2 = new JRadioButton("수입");
 	private JLabel totalMoney = new JLabel("지출합계 : ₩30,000 수입합계 : ₩50,000 남은 자산 ₩20,000");
 	
@@ -41,33 +41,35 @@ public class GraphPanel extends JPanel{
 	public GraphPanel (MainFrame mainframe) {
         setLayout(null);
         this.setBackground(new Color(250,255,184));
-        backButton.setSize(134,30);
+        backButton.setSize(134,31);
         backButton.setLocation(20, 10);
         add(backButton);
         
-        label.setSize(120,30);
-        label.setLocation(400, 100);
-        label.setFont(label.getFont().deriveFont(20.0f));
+        label.setSize(237,50);
+        label.setLocation(400, 240);
+        
         add(label);
         
-        label2.setSize(562,142);
+        label2.setSize(562,164);
         label2.setLocation(620, 10);
         add(label2);
         
-        label3.setSize(200,50);
-        label3.setLocation(1200, 100);
-        label3.setFont(label3.getFont().deriveFont(20.0f));
+        label3.setSize(341,50);
+        label3.setLocation(1150, 240);
+        
         add(label3);
         
         radiobutton1.setSize(60,30);
-        radiobutton1.setLocation(600, 180);
-        radiobutton1.setFont(radiobutton1.getFont().deriveFont(12.0f));
+        radiobutton1.setLocation(600, 300);
+        radiobutton1.setBackground(new Color(250,255,184));
+
         add(radiobutton1);
         radiobutton1.setSelected(true);
         
         radiobutton2.setSize(60,30);
-        radiobutton2.setLocation(700, 180);
-        radiobutton2.setFont(radiobutton2.getFont().deriveFont(12.0f));
+        radiobutton2.setLocation(700, 300);
+        radiobutton2.setBackground(new Color(250,255,184));
+
         add(radiobutton2);
         
         

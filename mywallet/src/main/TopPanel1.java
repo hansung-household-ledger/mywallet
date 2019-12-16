@@ -51,7 +51,7 @@ public class TopPanel1 extends JPanel {
       perDay.setFont(new Font("고딕",Font.BOLD,20));
       add(perDay);
 
-      date.setSize(750, 50);
+      date.setSize(600, 50);
       date.setLocation(200,350);
       date.setOpaque(false);
       date.setBackground(Color.GRAY);
