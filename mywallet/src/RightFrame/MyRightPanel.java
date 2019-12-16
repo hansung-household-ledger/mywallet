@@ -226,7 +226,7 @@ public class MyRightPanel extends JPanel {
 					        insertDataDao.insertList(new DBconnection(), money, type, category);
 						}
 						getWalletDao.getWalletData(new DBconnection(), userData , tp, graphPanel, listObjectData);
-						getWalletDao.getwalletListDao(new DBconnection(), userData, tp, graphPanel, listObjectData);
+						getWalletDao.getwalletListDao(new DBconnection(), userData, tp, listObjectData);
 						label[0].setText("0");
 						tf.setText("0");
 					}

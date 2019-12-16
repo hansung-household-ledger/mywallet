@@ -2,7 +2,6 @@ package main;
 
 import java.awt.Color;
 import java.awt.Container;
-import java.awt.GridLayout;
 
 import javax.swing.JFrame;
 
@@ -25,23 +24,22 @@ public class MainFrame extends JFrame{
 	TopPanel1 tp = null;
 	GetWalletDao getWalletDao = new GetWalletDao();
 	
-	
     public MainFrame() {
         setTitle("mywallet project");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1800, 1000);
         setVisible(true);
         Container c = getContentPane();
-        graphPanel = new GraphPanel(this);
         tp =  new TopPanel1(userData);
-        getWalletDao.getwalletListDao(new DBconnection(), userData, tp, graphPanel, listObjectData);
+        getWalletDao.getwalletListDao(new DBconnection(), userData, tp, listObjectData);
+        getWalletDao.getDaysOutcomeMoneyDao(new DBconnection(), listObjectData);
+        getWalletDao.getDaysIncomeMoneyDao(new DBconnection(), listObjectData);
+        graphPanel = new GraphPanel(this, listObjectData);
         getWalletDao.getWalletData(new DBconnection(), userData, tp, graphPanel, listObjectData);
-//        tp = new TopPanel1(userData);
+        
         RP = new MyRightPanel(this, userData, getWalletDao, tp, graphPanel, listObjectData);
         // batch 
         c.setLayout(null);
-        // add panel example
-//        add(menuPanel, BorderLayout.NORTH);
         tp.setSize(800,1000);
         tp.setLocation(0, 0);
         add(tp);
@@ -53,7 +51,7 @@ public class MainFrame extends JFrame{
         
         graphPanel.setLocation(0, 0);
         graphPanel.setSize(1800, 1000);
-        this.setResizable(false);
+//        this.setResizable(false);
         
    
     }
