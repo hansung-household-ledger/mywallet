@@ -53,7 +53,7 @@ public class MainFrame extends JFrame{
         
         graphPanel.setLocation(0, 0);
         graphPanel.setSize(1800, 1000);
-        this.setResizable(false);
+        //this.setResizable(false);
         
    
     }

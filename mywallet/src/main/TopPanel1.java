@@ -2,9 +2,12 @@ package main;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -32,7 +35,7 @@ public class TopPanel1 extends JPanel {
 
    public ListData rowData[] = new ListData[10];
   
-   public DefaultTableModel defaultTableModel = new DefaultTableModel(new String[] { "지출/수입", "유형", "금액" }, 0) {
+   public DefaultTableModel defaultTableModel = new DefaultTableModel(new String[] { "지출/수입", "유형", "금액" }, 0){
 		@Override
 		public boolean isCellEditable(int row, int column)
 		{
@@ -60,7 +63,7 @@ public class TopPanel1 extends JPanel {
       icon = new ImageIcon("./image/bgImg.png");
       
       ddayIn.setSize(200,40);
-      ddayIn.setLocation(500, 0);
+      ddayIn.setLocation(0, 900);
       ddayIn.setFont(new Font("맑은고딕", Font.BOLD, 25));
       add(ddayIn);
       
@@ -137,8 +140,17 @@ public class TopPanel1 extends JPanel {
       ddayIn.addActionListener(new ActionListener() {
    	   @Override
    	   public void actionPerformed(ActionEvent e) {
-   		   new dDay();
-   	   }
+   		   Object obj = e.getSource();
+   		   if((JButton) obj ==ddayIn) {
+   			   final Frame fs =new comboDDay();
+   			   /*fs.addWindowListener(new WindowAdapter() {
+   				   public void windowClosing(WindowEvent e) {
+   					   fs.dispose();
+   			   	   }
+   			   });*/
+   			   fs.setLocation(500, 500);
+   		   }
+   	   	}
       });
 
       jScollPane.setSize(300, 200);
@@ -154,8 +166,16 @@ public class TopPanel1 extends JPanel {
    
    public static void getDday(int count) {
 	   ddaycount = Integer.toString(count);
-	   dday.setFont(new Font("고딕",Font.BOLD,40));
-	   dday.setLocation(280,380);
-	   dday.setText("♥ "+ "D+ "+ddaycount+ " ♥");
+	   if(count<=0) {
+		   ddaycount = "틀린 날짜입니다. 다시 입력해주세요";
+		   dday.setText(ddaycount);
+	   }
+	   else {
+		   ddaycount = Integer.toString(count); 
+		   dday.setForeground(Color.RED);
+		   dday.setFont(new Font("고딕",Font.BOLD,40));
+		   dday.setLocation(150,380);
+		   dday.setText("♥ ♥ "+ddaycount +"일째 연애중"+ " ♥ ♥");
+	   }
    }
 }
