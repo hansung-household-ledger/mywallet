@@ -1,6 +1,7 @@
 package myGraph;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -80,6 +81,7 @@ public class GraphPanel extends JPanel{
 
         chartPanel.setSize(700,250);
         chartPanel.setLocation(1000, 350);
+        chartPanel.setBackground(new Color(0,189,255));
         add(chartPanel);
         
         drawingPanel.setSize(800,300);
@@ -132,6 +134,7 @@ public class GraphPanel extends JPanel{
 			chartPanel.repaint(); // 차트패널의 PAINT호출
 		}
 	}
+	
 	private void drawString(Graphics g, String text, int x, int y) {
         for (String line : text.split("\n"))
             g.drawString(line, x, y += g.getFontMetrics().getHeight());
@@ -147,12 +150,13 @@ public class GraphPanel extends JPanel{
 			for(int i=0;i<data.length;i++){
 				if(i > 4) {
 					g.setColor(color[i]);
+					g.setFont(new Font("궁서", Font.BOLD, 15));
 					drawString(g, itemName[i]+""+Math.round(arcAngle[i]*100/360)+"%\n", 50+z*100, 30);
 					z++;
 				} else {
 					g.setColor(color[i]);
-					g.drawString(itemName[i]+""+Math.round
-				   (arcAngle[i]*100/360)+"%", 50+i*100,20);
+					g.setFont(new Font("궁서", Font.BOLD, 15));
+					g.drawString(itemName[i]+""+Math.round(arcAngle[i]*100/360)+"%", 50+i*100, 20);
 				}
 			}
  
