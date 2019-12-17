@@ -1,4 +1,4 @@
-package myGraph;
+package GraphPanel;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -25,8 +25,7 @@ public class GraphPanel extends JPanel{
 	
 	int[] arcAngle = new int[10];
 	
-	Color[] color = {Color.RED, Color.BLUE, Color.MAGENTA, Color.ORANGE,Color.black, Color.cyan, Color.green,
-			Color.pink, Color.white, Color.yellow};
+	Color[] color = {Color.RED, Color.BLUE, Color.MAGENTA, Color.ORANGE,Color.black, Color.cyan, Color.green, Color.pink, Color.white, Color.yellow};
 	String[] itemName = {"식비", "문화생활", "쇼핑", "기타"};
 	
 	private JLabel label = new JLabel(new ImageIcon("./image/month.png")); //월별내역
@@ -45,9 +44,6 @@ public class GraphPanel extends JPanel{
 	}
 	
 	public ChartPanel chartPanel = new ChartPanel(); // 원 차트패널
-	
-	
-
 	
 	public GraphPanel (MainFrame mainframe, ListObjectdata listObjectData) {
 		
@@ -92,7 +88,7 @@ public class GraphPanel extends JPanel{
         
         totalMoney.setSize(800,50);
         totalMoney.setLocation(600, 800);
-        totalMoney.setFont(totalMoney.getFont().deriveFont(20.0f));
+        totalMoney.setFont(new Font("바탕", Font.BOLD, 20));
         add(totalMoney);
 
         chartPanel.setSize(700,250);
@@ -102,7 +98,7 @@ public class GraphPanel extends JPanel{
         
         drawingPanel.setSize(800,300);
         drawingPanel.setLocation(100,350);
-        drawingPanel.setBackground(null);
+        drawingPanel.setBackground(new Color(250,255,184));
         add(drawingPanel);
         
         
@@ -168,12 +164,12 @@ public class GraphPanel extends JPanel{
 			for(int i=0;i<4;i++){
 				if(i > 4) {
 					g.setColor(color[i]);
-					g.setFont(new Font("궁서", Font.BOLD, 15));
+					g.setFont(new Font("바탕", Font.BOLD, 15));
 					drawString(g, itemName[i]+""+Math.round(arcAngle[i]*100/360)+"%\n", 50+z*100, 30);
 					z++;
 				} else {
 					g.setColor(color[i]);
-					g.setFont(new Font("궁서", Font.BOLD, 15));
+					g.setFont(new Font("바탕", Font.BOLD, 15));
 					g.drawString(itemName[i]+""+Math.round(arcAngle[i]*100/360)+"%", 50+i*100, 20);
 				}
 			}

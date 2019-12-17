@@ -1,4 +1,4 @@
-package main;
+package LeftPanel;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -22,7 +22,7 @@ import javax.swing.table.DefaultTableModel;
 import model.ListData;
 import model.UserData;
 
-public class TopPanel1 extends JPanel {
+public class LeftPanel extends JPanel {
    //날짜
    SimpleDateFormat format1 = new SimpleDateFormat("yyyy년 MM월 dd일");
    Date time = new Date();
@@ -59,7 +59,7 @@ public class TopPanel1 extends JPanel {
    private JButton ddayIn = new JButton(new ImageIcon("./image/dday.png"));
    private static JLabel dday = new JLabel();
    private JLabel love = new JLabel(new ImageIcon("./image/love.png"));
-   public TopPanel1(UserData userData) {
+   public LeftPanel(UserData userData) {
       setLayout(null);
       icon = new ImageIcon("./image/bgImg.png");
       
@@ -148,7 +148,7 @@ public class TopPanel1 extends JPanel {
    	   public void actionPerformed(ActionEvent e) {
    		   Object obj = e.getSource();
    		   if((JButton) obj ==ddayIn) {
-   			   final Frame fs =new comboDDay();
+   			   final Frame fs =new DDayFrame();
    			   /*fs.addWindowListener(new WindowAdapter() {
    				   public void windowClosing(WindowEvent e) {
    					   fs.dispose();

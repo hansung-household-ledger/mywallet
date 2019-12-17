@@ -1,4 +1,4 @@
-package main;
+package LeftPanel;
 
 import java.awt.Container;
 import java.awt.FlowLayout;
@@ -10,7 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 
-class comboDDay extends JFrame{
+class DDayFrame extends JFrame{
 	String yyyy,mm,dd;
 	JComboBox<String> year;
 	JComboBox<String> month;
@@ -21,7 +21,7 @@ class comboDDay extends JFrame{
 	String dateList[] = {"일","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"};
 	JButton okey = new JButton("확인");
 	
-	public comboDDay() {
+	public DDayFrame() {
 		
 		setSize(200,200);
 		setVisible(true);
@@ -56,7 +56,7 @@ class comboDDay extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 			    int a = caldate(yyyy,mm,dd);
-			    TopPanel1.getDday(a);
+			    LeftPanel.getDday(a);
 		   		dispose();
 		   	}
 		});

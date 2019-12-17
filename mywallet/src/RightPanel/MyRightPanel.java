@@ -1,4 +1,4 @@
-package RightFrame;
+package RightPanel;
 
 import java.awt.Color;
 import java.awt.Container;
@@ -14,15 +14,16 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import GraphPanel.GraphPanel;
+import LeftPanel.LeftPanel;
 import config.DBconnection;
 import dao.GetWalletDao;
 import dao.IdDataDao;
 import dao.InsertDataDao;
 import main.MainFrame;
-import main.TopPanel1;
 import model.ListObjectdata;
 import model.UserData;
-import myGraph.GraphPanel;
 
 
 public class MyRightPanel extends JPanel {
@@ -38,7 +39,7 @@ public class MyRightPanel extends JPanel {
     	int incomeOroutcome = 0; //in=0 out=1
     	
 
-    	public MyRightPanel(MainFrame mainframe, UserData userData, GetWalletDao getWalletDao, TopPanel1 tp,GraphPanel graphPanel, ListObjectdata listObjectData) {
+    	public MyRightPanel(MainFrame mainframe, UserData userData, GetWalletDao getWalletDao, LeftPanel tp,GraphPanel graphPanel, ListObjectdata listObjectData) {
 			    setLayout(null);
 			    this.setBackground(new Color(250,255,184));
 				in.setSize(100, 41);

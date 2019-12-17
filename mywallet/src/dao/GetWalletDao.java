@@ -5,15 +5,15 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import GraphPanel.GraphPanel;
+import LeftPanel.LeftPanel;
 import config.DBconnection;
-import main.TopPanel1;
 import model.ListObjectdata;
 import model.UserData;
-import myGraph.GraphPanel;
 
 public class GetWalletDao {
 	
-	public void getWalletData(DBconnection db, UserData userData, TopPanel1 tp, GraphPanel graphPanel, ListObjectdata listObjectData) {
+	public void getWalletData(DBconnection db, UserData userData, LeftPanel tp, GraphPanel graphPanel, ListObjectdata listObjectData) {
 		Statement statement;
 		ResultSet resultSet;
 		
@@ -53,7 +53,7 @@ public class GetWalletDao {
 		
 	}
 	
-	public void getwalletListDao(DBconnection db, UserData userData, TopPanel1 tp, ListObjectdata listObjectData) {
+	public void getwalletListDao(DBconnection db, UserData userData, LeftPanel tp, ListObjectdata listObjectData) {
 		Statement statement;
 		ResultSet resultSet;
 		

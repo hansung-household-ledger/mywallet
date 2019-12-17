@@ -1,4 +1,4 @@
-package RightFrame;
+package RightPanel;
 
 import java.awt.Color;
 import java.awt.Graphics;

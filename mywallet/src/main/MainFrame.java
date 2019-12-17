@@ -8,13 +8,14 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.swing.JFrame;
 
-import RightFrame.MyRightPanel;
-import RightFrame.SnowPanel;
+import GraphPanel.GraphPanel;
+import LeftPanel.LeftPanel;
+import RightPanel.MyRightPanel;
+import RightPanel.SnowPanel;
 import config.DBconnection;
 import dao.GetWalletDao;
 import model.ListObjectdata;
 import model.UserData;
-import myGraph.GraphPanel;
 
 public class MainFrame extends JFrame{
 	public static String detail1[] = {"A","B"};
@@ -24,7 +25,7 @@ public class MainFrame extends JFrame{
 	ListObjectdata listObjectData = new ListObjectdata();
 	GraphPanel graphPanel = null;
 	MyRightPanel RP = null;
-	TopPanel1 tp = null;
+	LeftPanel tp = null;
 	SnowPanel sp = null;
 	GetWalletDao getWalletDao = new GetWalletDao();
 	
@@ -35,7 +36,7 @@ public class MainFrame extends JFrame{
         setSize(1800, 1000);
         setVisible(true);
         Container c = getContentPane();
-        tp =  new TopPanel1(userData);
+        tp =  new LeftPanel(userData);
 		sp = new SnowPanel();
         getWalletDao.getwalletListDao(new DBconnection(), userData, tp, listObjectData);
         getWalletDao.getDaysOutcomeMoneyDao(new DBconnection(), listObjectData);
@@ -82,7 +83,7 @@ public class MainFrame extends JFrame{
     
     public void play() {
         try {
-
+//        	./image/Carol.wav
             File f = new File("./image/Carol.wav");
 
             AudioInputStream ais = AudioSystem.getAudioInputStream(f);
